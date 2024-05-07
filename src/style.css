@@ -1,3 +1,19 @@
-/* body {
-  background-color: red;
-} */
+body {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 90vh;
+}
+
+.main-container {
+  border: 2px black solid;
+  grid-column: 2 / 3;
+  grid-row: 1 / 1;
+  display: grid;
+  grid-template-rows: 0.5fr 2fr 1fr 1fr;
+}
+
+.main-container > div {
+
+  border: 1px solid black;
+}
+

@@ -5,7 +5,18 @@ import js from '@eslint/js';
 
 export default [
   js.configs.recommended,
-  {files: ['src/**/*.js'], languageOptions: {sourceType: 'commonjs'}}, 
+  {files: ['src/**/*.js'], languageOptions: {sourceType: 'commonjs'}},
+  {
+    'parserOptions': {
+      'ecmaVersion': 2020, // or higher
+      'sourceType': 'module'
+    },
+    'env': {
+      'es6': true,
+      'browser': true, // or "node": true, depending on your environment
+      'commonjs': true
+    }
+  },
   {
     'rules': {
       'eqeqeq': 'error',
