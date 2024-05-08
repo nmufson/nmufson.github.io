@@ -3,10 +3,7 @@
 //temp c, temp f, uv, 
 import { searchDiv, currentWeather, hourlyForecast, dailyForecast } from "./dom-manipulation";
 
-searchDiv();
-currentWeather();
-hourlyForecast();
-dailyForecast();
+
 
 const fetchWeather = async (city) => {
   try {
@@ -20,17 +17,15 @@ const fetchWeather = async (city) => {
   };
 };
 
-const processWeatherData = async (city) => {
+export const processWeatherData = async (city) => {
   const weatherData = await fetchWeather(city);
 
   const current = weatherData.current;
-  const forecastDayZero = weatherData.forecast.forecastday[0];
-  const forecastDayOne = weatherData.forecast.forecastday[1];
-  const forecastDayTwo = weatherData.forecast.forecastday[2];
+  console.log(weatherData)
 
-
-  const currentWeatherObject = {
-    condition: current.condition.text,
+  const weatherObj = {
+    conditionText: current.condition.text,
+    conditionIcon: current.condition.icon,
     tempF: current.temp_f,
     tempC: current.temp_c,
     feelsLikeTempF: current.feelslike_f,
@@ -38,19 +33,24 @@ const processWeatherData = async (city) => {
     windMPH: current.wind_mph,
     windKPH: current.wind_kph,
     humidity: current.humidity,
-    UV: current.uv
+    UV: current.uv,
+    cloudCoverage: current.cloud,
+    isDay : current.is_day,
+    forecast: weatherData.forecast
   };
 
-  const forecastedWeatherObject = {
-
-  }
-
-  console.log(weatherData)
-  console.log(currentWeatherObject);
+  console.log(weatherObj);
+  return weatherObj;
 };
 
-    
+const loadPage = async (city) => {
+  searchDiv();
+  
+  const weatherObj = await processWeatherData(city);
 
-    
+  currentWeather(weatherObj);
+  hourlyForecast(weatherObj);
+  dailyForecast(weatherObj);
+}
 
-processWeatherData('miami');
+loadPage('Toronto');
