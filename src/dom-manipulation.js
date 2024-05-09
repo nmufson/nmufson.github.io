@@ -105,17 +105,17 @@ export const currentWeather = async (weatherObj) => {
   } else {
     countryPara.textContent = locationObj.country;
   };
-  tempPara.textContent = `${weatherObj.tempF} °`;
+  tempPara.textContent = `${weatherObj.tempF}°`;
   conditionPara.textContent = weatherObj.conditionText;
   feelsLikeParaOne.textContent = 'FEELS LIKE';
-  feelsLikeParaTwo.textContent = `${weatherObj.feelsLikeTempF} °`;
+  feelsLikeParaTwo.textContent = `${weatherObj.feelsLikeTempF}°`;
   cloudCoverageParaOne.textContent = 'CLOUD COVERAGE';
-  cloudCoverageParaTwo.textContent = `${weatherObj.cloudCoverage} %`;
+  cloudCoverageParaTwo.textContent = `${weatherObj.cloudCoverage}%`;
   humidityParaOne.textContent = 'HUMIDITY';
-  humidityParaTwo.textContent = `${weatherObj.humidity} %`;
+  humidityParaTwo.textContent = `${weatherObj.humidity}%`;
   windParaOne.textContent = 'WIND';
-  windParaTwo.textContent = `${weatherObj.windMPH} mph`;
-  uvParaOne.textContent = 'UV INDEtime';
+  windParaTwo.textContent = `${weatherObj.windMPH}mph`;
+  uvParaOne.textContent = 'UV Index';
   uvParaTwo.textContent = weatherObj.UV;
 
   currentDiv.classList.add('current-weather');
@@ -211,7 +211,7 @@ const hourlyForecastDiv = (i,day,fragment) => {
   tempPara.textContent = `${day.hour[i].temp_f} °`;
 
   rainImg.setAttribute('src','../src/icons/rain.svg');
-  rainChance.textContent = `${day.hour[i].chance_of_rain} %`;
+  rainChance.textContent = `${day.hour[i].chance_of_rain}%`;
 
   rainDiv.appendChild(rainImg);
   rainDiv.appendChild(rainChance);
@@ -270,7 +270,7 @@ const createDailyForecastDiv = (day,dayName,parentDiv) => {
   bottomTempPara.textContent = `${day.maxtemp_f}°/${day.mintemp_f}°`;
 
   rainImg.src = '../src/icons/rain.svg';
-  rainPara.textContent = `${day.daily_chance_of_rain} %`;
+  rainPara.textContent = `${day.daily_chance_of_rain}%`;
 
   parentDiv.appendChild(div);
 
