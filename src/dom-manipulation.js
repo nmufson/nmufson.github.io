@@ -1,5 +1,6 @@
 import { getHours, format, addDays } from 'date-fns';
 import { loadPage } from './index.js';
+import { populateAutoComplete } from './autocomplete.js';
 
 
 
@@ -23,30 +24,44 @@ const createDomElements = () => {
 }
 
 export const searchDiv = () => {
-  const div = document.createElement('div');
+  const outerDiv = document.createElement('div');
+  const innerDiv = document.createElement('div');
   const para = document.createElement('p');
   const input = document.createElement('input');
   const searchButton = document.createElement('button');
-  
-  div.className = 'search';
-  para.textContent = 'Search City:';
+  const ul = document.createElement('ul');
+
+  outerDiv.className = 'outer-search';
+  innerDiv.className = 'inner-search';
+  para.textContent = 'City:';
   input.type = 'text';
   searchButton.textContent = 'Search';
 
-  div.appendChild(para);
-  div.appendChild(input);
-  div.appendChild(searchButton);
+  input.classList.add('search-input');
+  ul.classList.add('search-results');
 
   searchButton.addEventListener('click', () => {
-    const city = input.value;
+    const location = input.value;
     mainContainer.innerHTML = '';
-    loadPage(city);
-  })
+    loadPage(location);
+  });
+
+  input.addEventListener('input', () => {
+    console.log(input.value)
+    populateAutoComplete(input.value);
+  });
+
+  innerDiv.appendChild(para);
+  innerDiv.appendChild(input);
+  innerDiv.appendChild(searchButton);
   
-  mainContainer.appendChild(div);
+  outerDiv.appendChild(innerDiv);
+  outerDiv.appendChild(ul);
+  mainContainer.appendChild(outerDiv);
 }
 
-
+//add country and city to this on left
+//if country is US, use city and State
 export const currentWeather = async (weatherObj) => { 
 
   const currentDiv = document.createElement('div');
@@ -64,6 +79,8 @@ export const currentWeather = async (weatherObj) => {
   const uvDiv = document.createElement('div');
 
   const icon = document.createElement('img');
+  const cityPara = document.createElement('p');
+  const countryPara = document.createElement('p');
   const tempPara = document.createElement('p');
   const conditionPara = document.createElement('p');
   const feelsLikeParaOne = document.createElement('p');
@@ -77,12 +94,17 @@ export const currentWeather = async (weatherObj) => {
   const uvParaOne = document.createElement('p');
   const uvParaTwo = document.createElement('p');
 
-  currentDiv.classList.add('current-weather');
-
+  
   icon.setAttribute('src',`https://${weatherObj.conditionIcon}`);
+  
+  const locationObj = weatherObj.location; 
 
-
-
+  cityPara.textContent = `${locationObj.name},`;
+  if (locationObj.country === 'United States of America') {
+    countryPara.textContent = locationObj.region;
+  } else {
+    countryPara.textContent = locationObj.country;
+  };
   tempPara.textContent = `${weatherObj.tempF} °`;
   conditionPara.textContent = weatherObj.conditionText;
   feelsLikeParaOne.textContent = 'FEELS LIKE';
@@ -96,6 +118,16 @@ export const currentWeather = async (weatherObj) => {
   uvParaOne.textContent = 'UV INDEtime';
   uvParaTwo.textContent = weatherObj.UV;
 
+  currentDiv.classList.add('current-weather');
+  leftDiv.classList.add('current-left');
+  rightDiv.classList.add('current-right');
+  leftTopDiv.classList.add('current-left-top');
+  leftBottomDiv.classList.add('current-left-bottom');
+  rightTopDiv.classList.add('current-right-top');
+  rightMiddleDiv.classList.add('current-right-middle');
+  rightBottomDiv.classList.add('current-right-bottom');
+
+
 
   currentDiv.appendChild(leftDiv);
   currentDiv.appendChild(rightDiv);
@@ -105,8 +137,10 @@ export const currentWeather = async (weatherObj) => {
   rightDiv.appendChild(rightMiddleDiv);
   rightDiv.appendChild(rightBottomDiv);
 
-  leftTopDiv.appendChild(icon);
-  leftTopDiv.appendChild(tempPara);
+  leftTopDiv.appendChild(cityPara);
+  leftTopDiv.appendChild(countryPara);
+  leftBottomDiv.appendChild(icon);
+  leftBottomDiv.appendChild(tempPara);
   leftBottomDiv.appendChild(conditionPara);
   rightTopDiv.appendChild(feelsLikeDiv);
   rightMiddleDiv.appendChild(cloudCoverageDiv);

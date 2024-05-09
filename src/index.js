@@ -2,8 +2,9 @@
 //feels like c, feels likef, wind kph, wind mph, condition.text, humidity,
 //temp c, temp f, uv, 
 import { searchDiv, currentWeather, hourlyForecast, dailyForecast } from "./dom-manipulation";
+import { fetchAutoComplete } from "./autocomplete";
 
-
+fetchAutoComplete('Atla');
 
 const fetchWeather = async (city) => {
   try {
@@ -19,9 +20,9 @@ const fetchWeather = async (city) => {
 
 export const processWeatherData = async (city) => {
   const weatherData = await fetchWeather(city);
+  
 
   const current = weatherData.current;
-  console.log(weatherData)
 
   const weatherObj = {
     conditionText: current.condition.text,
@@ -36,10 +37,10 @@ export const processWeatherData = async (city) => {
     UV: current.uv,
     cloudCoverage: current.cloud,
     isDay : current.is_day,
-    forecast: weatherData.forecast
+    forecast: weatherData.forecast,
+    location: weatherData.location
   };
 
-  console.log(weatherObj);
   return weatherObj;
 };
 
