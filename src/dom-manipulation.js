@@ -1,4 +1,5 @@
 import { getHours, format, addDays } from 'date-fns';
+import { loadPage } from './index.js';
 
 
 
@@ -22,17 +23,27 @@ const createDomElements = () => {
 }
 
 export const searchDiv = () => {
-  const {div, input, para, img, mainContainer} = createDomElements();
-
+  const div = document.createElement('div');
+  const para = document.createElement('p');
+  const input = document.createElement('input');
+  const searchButton = document.createElement('button');
+  
   div.className = 'search';
-  input.type = 'text';
-
   para.textContent = 'Search City:';
+  input.type = 'text';
+  searchButton.textContent = 'Search';
 
-  mainContainer.appendChild(div);
   div.appendChild(para);
   div.appendChild(input);
-  div.appendChild(img);
+  div.appendChild(searchButton);
+
+  searchButton.addEventListener('click', () => {
+    const city = input.value;
+    mainContainer.innerHTML = '';
+    loadPage(city);
+  })
+  
+  mainContainer.appendChild(div);
 }
 
 
@@ -193,8 +204,8 @@ const createDailyForecastDiv = (day,dayName,parentDiv) => {
   
 
   const dayPara = document.createElement('p');
-  const highPara = document.createElement('p');
-  const lowPara = document.createElement('p');
+  const topTempPara = document.createElement('p');
+  const bottomTempPara = document.createElement('p');
   const rainPara = document.createElement('p');
   
 
@@ -211,8 +222,8 @@ const createDailyForecastDiv = (day,dayName,parentDiv) => {
 
   tempDiv.appendChild(tempImg);
   tempDiv.appendChild(tempParaDiv);
-  tempParaDiv.appendChild(highPara);
-  tempParaDiv.appendChild(lowPara);
+  tempParaDiv.appendChild(topTempPara);
+  tempParaDiv.appendChild(bottomTempPara);
 
   rainDiv.appendChild(rainImg);
   rainDiv.appendChild(rainPara);
@@ -221,8 +232,8 @@ const createDailyForecastDiv = (day,dayName,parentDiv) => {
   dayPara.textContent = dayName;
   conditionImg.src = `https://${day.condition.icon}`;
   tempImg.src = '../src/icons/thermometer.svg'
-  highPara.textContent = `${day.maxtemp_f} °`;
-  lowPara.textContent = `${day.mintemp_f} °`;
+  topTempPara.textContent = 'High/Low'
+  bottomTempPara.textContent = `${day.maxtemp_f}°/${day.mintemp_f}°`;
 
   rainImg.src = '../src/icons/rain.svg';
   rainPara.textContent = `${day.daily_chance_of_rain} %`;

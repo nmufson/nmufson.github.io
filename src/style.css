@@ -1,9 +1,19 @@
 body {
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   height: 90vh;
   font-size: 0.8em;
 }
+
+@media (max-width: 480px) {
+  body {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 90vh;
+    font-size: 1.0em;
+  }
+}
+
 
 .main-container {
   border: 2px black solid;
@@ -84,20 +94,42 @@ body {
 
 .daily-forecast {
   display: flex;
+  justify-content: center;
+  padding: 1%;
+  gap: 1%;
 }
 
 .daily-div {
   display: grid;
   grid-template-rows: 1fr 2fr 2fr;
+  border: 1px black solid;
+  min-width: 170px;
+  justify-items: center;
 }
 
-.daily-div * {
-  justify-self: center;
-}
 
-.daily-div > div, .daily-div * div {
+.daily-div > div {
   display: flex;
 }
+
+.daily-div > div > :first-child {
+  display: flex;
+  align-items: center;
+}
+
+.daily-div > div > :nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 5%;
+}
+
+.daily-div > div > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .daily-div > div * img {
   height: 20px;

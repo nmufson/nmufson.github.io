@@ -43,14 +43,15 @@ export const processWeatherData = async (city) => {
   return weatherObj;
 };
 
-const loadPage = async (city) => {
-  searchDiv();
+export const loadPage = async (city) => {
   
+  searchDiv();
   const weatherObj = await processWeatherData(city);
 
   currentWeather(weatherObj);
   hourlyForecast(weatherObj);
   dailyForecast(weatherObj);
 }
+
 
 loadPage('Toronto');
