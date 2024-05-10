@@ -3,7 +3,7 @@ import { loadPage } from "./index.js";
 const mainContainer = document.querySelector('.main-container');
 export const fetchAutoComplete = async (string) => {
   try {
-    const autoCompleteResponse = await fetch(`http://api.weatherapi.com/v1/search.json?key=51da3bac1aef4a96b1e194755240205&q=${string}`);
+    const autoCompleteResponse = await fetch(`https://api.weatherapi.com/v1/search.json?key=51da3bac1aef4a96b1e194755240205&q=${string}`);
     const autoCompleteData = await autoCompleteResponse.json();
     return autoCompleteData;
   } catch (error) {
