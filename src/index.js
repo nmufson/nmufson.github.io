@@ -44,15 +44,33 @@ export const processWeatherData = async (city) => {
   return weatherObj;
 };
 
-export const loadPage = async (city) => {
-  
-  searchDiv();
-  const weatherObj = await processWeatherData(city);
 
-  currentWeather(weatherObj);
-  hourlyForecast(weatherObj);
-  dailyForecast(weatherObj);
+export const loadPage = async (city) => {
+
+  
+  const loadingDiv = document.querySelector('.loading');
+  const loadingPara = loadingDiv.children[0];
+  console.log(loadingDiv);
+  loadingDiv.style.display = 'grid';
+  console.log(loadingDiv);
+  
+  const mainContainer = document.querySelector('.main-container');
+
+  try {
+    const weatherObj = await processWeatherData(city);
+    mainContainer.innerHTML = '';
+    searchDiv();
+    currentWeather(weatherObj);
+    hourlyForecast(weatherObj);
+    dailyForecast(weatherObj);
+    loadingDiv.style.display = 'none';
+  } catch(error) {
+    loadingPara.textContent = 'Invalid Location. Try Again!';
+    setTimeout(() => loadingDiv.style.display = 'none', 1000)
+  };
+  
 }
+  
 
 
 loadPage('Toronto');

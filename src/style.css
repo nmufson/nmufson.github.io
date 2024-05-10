@@ -109,6 +109,7 @@ body {
   font-weight: bold;
   margin-top: 0;
   justify-self: center;
+  text-align: center;
 }
 
 .current-left {
@@ -182,6 +183,7 @@ body {
 
 .current-left-top > P {
   padding-left: 5%;
+  
 }
 
 .current-left-top > :first-child {
@@ -301,6 +303,27 @@ body {
   font-size: 1.2em;
 }
 
+.loading {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: rgba(255, 255, 255);
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: 40%;
+  height: 10%;
+  font-size: 1.4em;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading > p {
+  margin: 0;
+}
 
 
 

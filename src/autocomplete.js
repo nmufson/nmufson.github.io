@@ -30,7 +30,6 @@ export const populateAutoComplete = async (string) => {
 
     newListItem.addEventListener('click', () => {
       const location = newListItem.textContent;
-      mainContainer.innerHTML = '';
       loadPage(location);
     });
 

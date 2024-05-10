@@ -42,7 +42,6 @@ export const searchDiv = () => {
 
   searchButton.addEventListener('click', () => {
     const location = input.value;
-    mainContainer.innerHTML = '';
     loadPage(location);
   });
 
@@ -50,6 +49,13 @@ export const searchDiv = () => {
     console.log(input.value)
     populateAutoComplete(input.value);
   });
+
+  input.addEventListener('keydown', (event) => {
+    const location = input.value;
+    if (event.key === 'Enter') {
+      loadPage(location);
+    }
+  })
 
   innerDiv.appendChild(para);
   innerDiv.appendChild(input);
