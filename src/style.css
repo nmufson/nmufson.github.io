@@ -6,14 +6,12 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
 @media (max-width: 480px) {
   body {
     grid-template-columns: 1fr;
-    font-size: 1.0em;
+    font-size: 1em;
   }
 }
-
 
 .main-container {
   border: 2px black solid;
@@ -86,14 +84,12 @@ body {
   background-color: lightblue;
 }
 
-
 .current-weather {
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 1% 1% 1% 1%;
   gap: 3%;
 }
-
 
 .current-left-bottom {
   width: 100%;
@@ -120,9 +116,8 @@ body {
   gap: 2%;
 }
 
-
-
-.current-left > div, .current-right > div > div {
+.current-left > div,
+.current-right > div > div {
   border: 1px solid black;
   border-radius: 15px;
   background-color: #c1cad9;
@@ -152,23 +147,21 @@ body {
   height: 100%;
 }
 
-
-
-.current-right-middle, .current-right-bottom {
+.current-right-middle,
+.current-right-bottom {
   display: flex;
   justify-content: space-between;
   gap: 2%;
 }
 
-.current-right-middle > div, .current-right-bottom > div {
+.current-right-middle > div,
+.current-right-bottom > div {
   display: grid;
   grid-template-rows: 1fr 1fr;
   justify-content: center;
   align-items: center;
   width: 50%;
 }
-
-
 
 .current-right > div > div > :first-child {
   font-size: 1em;
@@ -185,7 +178,6 @@ body {
 
 .current-left-top > P {
   padding-left: 5%;
-  
 }
 
 .current-left-top > :first-child {
@@ -218,7 +210,6 @@ body {
     min-width: 100px;
   }
 }
-
 
 .hourly-div > div {
   display: flex;
@@ -259,7 +250,6 @@ body {
 
 .daily-div > img {
   width: 80%;
-
 }
 
 .daily-div > div {
@@ -267,7 +257,6 @@ body {
   grid-template-rows: 2fr 1fr;
   width: 100%;
   justify-content: center;
-  
 }
 
 .daily-div > div > div {
@@ -301,7 +290,7 @@ body {
   width: 30%;
 }
 
-.daily-div > div *  p {
+.daily-div > div * p {
   font-size: 1.2em;
 }
 
@@ -326,8 +315,3 @@ body {
 .loading > p {
   margin: 0;
 }
-
-
-
-
-

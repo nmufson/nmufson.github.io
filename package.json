@@ -9,7 +9,9 @@
     "start": "webpack serve --mode development --config webpack.config.js",
     "build": "npx webpack --env NODE_ENV=production",
     "dev": "webpack --env.NODE_ENV=development",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prettier": "prettier --write .",
+    "prettier-check": "prettier --check ."
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
     "eslint": "^9.2.0",
     "globals": "^15.1.0",
     "html-webpack-plugin": "^5.6.0",
+    "prettier": "^3.2.5",
     "style-loader": "^4.0.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
